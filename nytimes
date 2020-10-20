@@ -1,0 +1,12 @@
+import requests
+import os
+from pprint import pprint
+
+apikey = os.getenv('VGSDRL9bWiWy70GdCPA4QX8flAsemVGJ', '...')
+
+query_url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20201020&end_date=20201020&api-key=VGSDRL9bWiWy70GdCPA4QX8flAsemVGJ"
+
+r = requests.get(query_url)
+filtered = [{'web_url': d['web_url'], 'source': d['source'], 'abstract': d['abstract']} for d in
+            r.json()['response']['docs']]
+pprint(filtered)
